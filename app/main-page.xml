@@ -1,0 +1,21 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <StackLayout>
+    <Label text="'Are we stuck?' indicator" class="title"/>
+    <GridLayout rows="*" cols="*" height="100">
+      <Image src="{{ indicator }}" col="0" row="0" height="80" id="img2" visibility="{{ hideLoader ? 'collapse' : 'visible' }}"/>
+      <StackLayout row="0" col="0">
+        <Label text="{{ percents }}" class="title"/>
+        <Label text="%" left="180" class="subtitle"/>
+      </StackLayout>
+    </GridLayout>
+    <GridLayout rows="auto" cols="*" backgroundColor="red">
+      <Image src="{{ image }}" row="0" col="0" stretch = "aspectFit" id="img1"/>
+      <Label text="{N}" row="0" col="0" class="title" backgroundColor="blue" height="80" width="80" id="lbl1" class="title" color="#fff" vertical-align="top"/>
+    </GridLayout>
+    <StackLayout>
+      <Button text="Reset Img" tap="{{ reset }}" id="btn2" />
+      <Button text="Process (BW)" tap="{{ grayscaleOnWorker }}" id="btn3" class="btn"/>
+      <Button text="animate Sq" tap="{{ animateLbl }}" id="btn4" />
+    </StackLayout>
+  </StackLayout>
+</Page>

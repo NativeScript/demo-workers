@@ -1,0 +1,32 @@
+﻿.title {
+    font-size: 30;
+    horizontal-align: center;
+    margin: 20;
+}
+
+.subtitle {
+    font-size: 20;
+    horizontal-align: center;
+    text-align: center;
+    vertical-align: center;
+    margin: -30;
+}
+
+button {
+    font-size: 20;
+    horizontal-align: center;
+}
+
+.btn {
+    border-radius: 10;
+    color: #fff;
+    background-color: #284898
+}
+
+.message {
+    font-size: 20;
+    color: #284848;
+    horizontal-align: center;
+    margin: 0 20;
+    text-align: center;
+}

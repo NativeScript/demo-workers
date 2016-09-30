@@ -1,0 +1,21 @@
+{
+  "description": "NativeScript Application",
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "readme": "NativeScript Application",
+  "repository": "<fill-your-repository-here>",
+  "nativescript": {
+    "id": "org.nativescript.grayscale",
+    "tns-android": {
+      "version": "2.4.0-next-2016-09-29-1186"
+    }
+  },
+  "dependencies": {
+    "tns-core-modules": "2.3.0"
+  },
+  "devDependencies": {
+    "babel-traverse": "6.15.0",
+    "babel-types": "6.15.0",
+    "babylon": "6.10.0",
+    "lazy": "1.0.11"
+  }
+}
