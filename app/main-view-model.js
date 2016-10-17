@@ -1,3 +1,5 @@
+'use strict'
+
 var Observable = require("data/observable").Observable;
 var Image = require("ui/image");
 var fs = require("file-system");
@@ -29,7 +31,7 @@ function createViewModel() {
             return;
         }
 
-        var lbl1 = getViewById("lbl1");
+        let lbl1 = getViewById("lbl1");
         lbl1Anim = new animation.Animation([{
             target: lbl1,
             rotate: 720,
@@ -105,7 +107,7 @@ function getViewById(viewId) {
     let topFrame = frame.topmost();
     currentPage = topFrame.currentPage;
 
-    var v = currentPage.getViewById(viewId);
+    let v = currentPage.getViewById(viewId);
     return v;
 }
 

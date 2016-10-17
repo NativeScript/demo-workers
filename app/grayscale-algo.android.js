@@ -75,7 +75,7 @@ function saveToFile(fileName, bmp, appDir) {
     return resultP;
 }
 
-function toGrayScale(bitmapSrc, value, fileName, appDir, progressCallback) {
+function toGrayScale(bitmapSrc, fileName, appDir, progressCallback) {
     var File = java.io.File;
     var BitmapFactory = android.graphics.BitmapFactory;
 
@@ -86,7 +86,7 @@ function toGrayScale(bitmapSrc, value, fileName, appDir, progressCallback) {
 
     var bitmap = BitmapFactory.decodeFile(bitmapSrc);
 
-    return grayScaleImage(bitmap, value, fileName, appDir, progressCallback);
+    return grayScaleImage(bitmap, fileName, appDir, progressCallback);
 }
 
 module.exports.ToGrayscale = toGrayScale;
