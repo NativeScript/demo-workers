@@ -1,1 +1,3 @@
-# demo-workers
+# Workers Sample App
+
+Sample app demonstrating the Workers API in NativeScript. Press the Animate button to start a never ending animation. Press the Process button to trigger the creation of a new worker that performs relatively heavy image processing operation on a background thread. After the operation finishes its execution the original image on the screen is replaced by the black and white version of the image produced by the worker thread. Meanwhile the animation happening on the main thread should not be affected by the background image processing.
