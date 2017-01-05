@@ -1,7 +1,5 @@
 function toGrayScale(bitmapSrc, bitmapDest, appDir, progressCallback) {
     var destinationOutputPath = NSString.stringWithString(appDir).stringByAppendingPathComponent(bitmapDest);
-    console.log('--> source: ' + bitmapSrc);
-    console.log('--> destination: ' + destinationOutputPath);
 
     var image = UIImage.imageWithContentsOfFile(bitmapSrc);
     var actualWidth = image.size.width;
