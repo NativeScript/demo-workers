@@ -86,6 +86,7 @@ function createViewModel() {
                 w.terminate();
                 viewModel.set("hideLoader", true);
                 viewModel.set("image", pathToBW);
+                viewModel.set("percents", 100);
 
                 anim.cancel();
             }
