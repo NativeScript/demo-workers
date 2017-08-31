@@ -55,7 +55,13 @@ function createViewModel() {
 
     viewModel.hideLoader = true;
     viewModel.grayscaleOnWorker = function () {
-        var w = new Worker("./workers/grayscaler.js");
+        var w;
+        if (global.TNS_WEBPACK) {
+            var GrayscaleWorker = require("worker-loader!./workers/grayscaler.js");
+            w = new GrayscaleWorker();
+        } else {
+            w = new Worker("./workers/grayscaler.js");
+        }
 
         anim = new animation.Animation([{
             target: getViewById("img2"),

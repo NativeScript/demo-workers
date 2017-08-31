@@ -28,7 +28,8 @@
     "resolve-url-loader": "~2.1.0",
     "webpack": "~3.2.0",
     "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-sources": "~1.0.1"
+    "webpack-sources": "~1.0.1",
+    "worker-loader": "github:nativescript/worker-loader"
   },
   "scripts": {
     "ns-bundle": "ns-bundle",

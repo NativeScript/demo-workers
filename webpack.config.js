@@ -6,7 +6,7 @@ const nativescriptTarget = require("nativescript-dev-webpack/nativescript-target
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-
+const { NativeScriptWorkerPlugin } = require("worker-loader/NativeScriptWorkerPlugin");
 
 const mainSheet = `app.css`;
 
@@ -132,6 +132,7 @@ function getRules() {
 
 function getPlugins(platform, env) {
     let plugins = [
+        new NativeScriptWorkerPlugin(),
         new ExtractTextPlugin(mainSheet),
 
         // Vendor libs go to the vendor.js chunk
