@@ -6,14 +6,14 @@
   "nativescript": {
     "id": "org.nativescript.grayscale",
     "tns-android": {
-      "version": "2.4.0-next-2016-09-29-1186"
+      "version": "next"
     },
     "tns-ios": {
-      "version": "2.4.0-2016-10-19-2"
+      "version": "next"
     }
   },
   "dependencies": {
-    "tns-core-modules": "2.4.0"
+    "tns-core-modules": "next"
   },
   "devDependencies": {
     "babel-traverse": "6.15.0",
