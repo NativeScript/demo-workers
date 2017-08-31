@@ -51,12 +51,12 @@ function saveToFile(fileName, bmp, appDir) {
 
     var path = pathOnDevice;
 
-    console.log('Saving file to: ' + path);
+    log('Saving file to: ' + path);
 
     var file = new File(path, fileName);
     var resultP = file.getAbsolutePath();
 
-    console.log('Abs file path: ' + resultP);
+    log('Abs file path: ' + resultP);
 
     try {
         var out = new FileOutputStream(resultP);
@@ -64,12 +64,12 @@ function saveToFile(fileName, bmp, appDir) {
         out.flush();
         out.close();
     } catch (e) {
-        console.log('Failed to save image to file: ' + e.toString());
+        log('Failed to save image to file: ' + e.toString());
 
         return null;
     }
 
-    console.log('Saved image to file: ' + resultP);
+    log('Saved image to file: ' + resultP);
 
 
     return resultP;
@@ -79,7 +79,7 @@ function toGrayScale(bitmapSrc, fileName, appDir, progressCallback) {
     var File = java.io.File;
     var BitmapFactory = android.graphics.BitmapFactory;
 
-    console.log('bitmapSrc: ' + bitmapSrc);
+    log('bitmapSrc: ' + bitmapSrc);
 
     var f = new File(bitmapSrc);
     if (!f.exists()) { return null; }
@@ -87,6 +87,13 @@ function toGrayScale(bitmapSrc, fileName, appDir, progressCallback) {
     var bitmap = BitmapFactory.decodeFile(bitmapSrc);
 
     return grayScaleImage(bitmap, fileName, appDir, progressCallback);
+}
+
+function log(message) {
+    if (!global.TNS_WEBPACK) {
+        require("globals");
+        console.log(message);
+    }
 }
 
 module.exports.ToGrayscale = toGrayScale;

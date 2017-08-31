@@ -1,12 +1,5 @@
 // required manually to setup 'console'
-var globals = require("globals");
 var grayscaleAlgo = require("../grayscale-algo");
-
-// console = {
-//     log: function (msg) {
-//         android.util.Log.v("CONSOLELOG", msg);
-//     }
-// }
 
 onmessage = function (msg) {
     if (msg.data == "close") {
@@ -25,11 +18,10 @@ onmessage = function (msg) {
 }
 
 onerror = function (e) {
-    console.log("An error occurred in worker. Main will handle this. Err: " + e);
-
     // return true to not propagate to main
 }
 
 function progressCallback(value) {
     postMessage({ res: "progress", value: value });
 }
+
