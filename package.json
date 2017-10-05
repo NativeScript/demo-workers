@@ -29,7 +29,7 @@
     "webpack": "~3.2.0",
     "webpack-bundle-analyzer": "^2.8.2",
     "webpack-sources": "~1.0.1",
-    "worker-loader": "github:nativescript/worker-loader"
+    "nativescript-worker-loader": "0.8.1"
   },
   "scripts": {
     "ns-bundle": "ns-bundle",
