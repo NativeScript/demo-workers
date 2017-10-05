@@ -57,7 +57,7 @@ function createViewModel() {
     viewModel.grayscaleOnWorker = function () {
         var w;
         if (global.TNS_WEBPACK) {
-            var GrayscaleWorker = require("worker-loader!./workers/grayscaler.js");
+            var GrayscaleWorker = require("nativescript-worker-loader!./workers/grayscaler.js");
             w = new GrayscaleWorker();
         } else {
             w = new Worker("./workers/grayscaler.js");
