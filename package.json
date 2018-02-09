@@ -5,39 +5,31 @@
   "repository": "<fill-your-repository-here>",
   "nativescript": {
     "id": "org.nativescript.grayscale",
-    "tns-android": {
-      "version": "3.2.0-2017-8-29-1"
-    },
     "tns-ios": {
-      "version": "next"
+      "version": "3.4.1"
+    },
+    "tns-android": {
+      "version": "3.4.1"
     }
   },
   "dependencies": {
-    "tns-core-modules": "next"
+    "tns-core-modules": "^3.4.0"
   },
   "devDependencies": {
-    "babel-traverse": "6.15.0",
-    "babel-types": "6.15.0",
-    "babylon": "6.10.0",
-    "copy-webpack-plugin": "~4.0.1",
-    "extract-text-webpack-plugin": "~3.0.0",
+    "babel-traverse": "6.26.0",
+    "babel-types": "6.26.0",
+    "babylon": "6.18.0",
+    "copy-webpack-plugin": "~4.3.0",
+    "css-loader": "~0.28.7",
+    "extract-text-webpack-plugin": "~3.0.2",
     "lazy": "1.0.11",
-    "nativescript-css-loader": "~0.26.0",
-    "nativescript-dev-webpack": "next",
+    "nativescript-dev-webpack": "^0.9.1",
+    "nativescript-worker-loader": "~0.8.1",
     "raw-loader": "~0.5.1",
-    "resolve-url-loader": "~2.1.0",
-    "webpack": "~3.2.0",
-    "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-sources": "~1.0.1",
-    "nativescript-worker-loader": "0.8.1"
-  },
-  "scripts": {
-    "ns-bundle": "ns-bundle",
-    "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
-    "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install",
-    "start-android-bundle": "npm run ns-bundle --android --run-app",
-    "start-ios-bundle": "npm run ns-bundle --ios --run-app",
-    "build-android-bundle": "npm run ns-bundle --android --build-app",
-    "build-ios-bundle": "npm run ns-bundle --ios --build-app"
+    "resolve-url-loader": "~2.2.1",
+    "uglifyjs-webpack-plugin": "~1.1.6",
+    "webpack": "~3.10.0",
+    "webpack-bundle-analyzer": "^2.9.1",
+    "webpack-sources": "~1.1.0"
   }
 }
