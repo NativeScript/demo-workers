@@ -23,7 +23,6 @@ module.exports = env => {
 
     const platforms = ["ios", "android"];
     const projectRoot = __dirname;
-    nsWebpack.loadAdditionalPlugins({ projectDir: projectRoot });
 
     // Default destination inside platforms/<platform>/...
     const dist = resolve(projectRoot, nsWebpack.getAppPath(platform, projectRoot));
@@ -40,7 +39,12 @@ module.exports = env => {
         snapshot, // --env.snapshot
         uglify, // --env.uglify
         report, // --env.report
+        sourceMap, // --env.sourceMap
+        hmr, // --env.hmr,
     } = env;
+    const externals = (env.externals || []).map((e) => { // --env.externals
+        return new RegExp(e + ".*");
+    });
 
     const appFullPath = resolve(projectRoot, appPath);
     const appResourcesFullPath = resolve(projectRoot, appResourcesPath);
@@ -51,6 +55,7 @@ module.exports = env => {
     const config = {
         mode: uglify ? "production" : "development",
         context: appFullPath,
+        externals,
         watchOptions: {
             ignored: [
                 appResourcesFullPath,
@@ -94,7 +99,7 @@ module.exports = env => {
             "fs": "empty",
             "__dirname": false,
         },
-        devtool: "none",
+        devtool: sourceMap ? "inline-source-map" : "none",
         optimization:  {
             splitChunks: {
                 cacheGroups: {
@@ -114,9 +119,9 @@ module.exports = env => {
             minimize: !!uglify,
             minimizer: [
                 new UglifyJsPlugin({
+                    parallel: true,
+                    cache: true,
                     uglifyOptions: {
-                        parallel: true,
-                        cache: true,
                         output: {
                             comments: false,
                         },
@@ -144,11 +149,25 @@ module.exports = env => {
                         {
                             loader: "nativescript-dev-webpack/bundle-config-loader",
                             options: {
-                                registerPages: true, // applicable only for non-angular apps
                                 loadCss: !snapshot, // load the application css if in debug mode
                             }
                         },
                     ].filter(loader => !!loader)
+                },
+
+                {
+                    test: /-page\.js$/,
+                    use: "nativescript-dev-webpack/script-hot-loader"
+                },
+
+                {
+                    test: /\.(css|scss)$/,
+                    use: "nativescript-dev-webpack/style-hot-loader"
+                },
+
+                {
+                    test: /\.(html|xml)$/,
+                    use: "nativescript-dev-webpack/markup-hot-loader"
                 },
 
                 { test: /\.(html|xml)$/, use: "nativescript-dev-webpack/xml-namespace-loader"},
@@ -164,13 +183,14 @@ module.exports = env => {
                         { loader: "css-loader", options: { minimize: false, url: false } },
                         "sass-loader"
                     ]
-                }
+                },
             ]
         },
         plugins: [
             // Define useful constants like TNS_WEBPACK
             new webpack.DefinePlugin({
                 "global.TNS_WEBPACK": "true",
+                "process": undefined,
             }),
             // Remove all files from the out dir.
             new CleanWebpackPlugin([ `${dist}/**/*` ]),
@@ -184,16 +204,17 @@ module.exports = env => {
             ]),
             // Copy assets to out dir. Add your own globs as needed.
             new CopyWebpackPlugin([
-                { from: "fonts/**" },
-                { from: "**/*.jpg" },
-                { from: "**/*.png" },
+                { from: { glob: "fonts/**" } },
+                { from: { glob: "**/*.jpg" } },
+                { from: { glob: "**/*.png" } },
             ], { ignore: [`${relative(appPath, appResourcesFullPath)}/**`] }),
             // Generate a bundle starter script and activate it in package.json
             new nsWebpack.GenerateBundleStarterPlugin([
                 "./vendor",
                 "./bundle",
             ]),
-            // Support for web workers since v3.2
+            // For instructions on how to set up workers with webpack
+            // check out https://github.com/nativescript/worker-loader
             new NativeScriptWorkerPlugin(),
             new nsWebpack.PlatformFSPlugin({
                 platform,
@@ -225,6 +246,11 @@ module.exports = env => {
             webpackConfig: config,
         }));
     }
+
+    if (hmr) {
+        config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    }
+
 
     return config;
 };
